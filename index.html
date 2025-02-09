@@ -566,28 +566,33 @@
         let canSubmit = true;
 
         function handleSubmit(event) {
-            event.preventDefault();
-            if (!canSubmit) return false;
+    event.preventDefault();
+    if (!canSubmit) return false;
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
 
-            if (name && email && message) {
-                const mailtoLink = `mailto:bitwisevault@gmail.com?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}`;
-                window.location.href = mailtoLink;
-                
-                canSubmit = false;
-                document.getElementById('submitBtn').disabled = true;
-                document.getElementById('formStatus').style.display = 'block';
-                document.getElementById('formStatus').textContent = 'Message launched! Cooldown initiated...';
+    if (name && email && message) {
+        const subject = encodeURIComponent('Message from BitWise Games Contact Form');
+        const body = encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\n\n${message}`
+        ).replace(/%20/g, ' '); // Replace encoded spaces with actual spaces for better readability
+        
+        const mailtoLink = `mailto:bitwisevault@gmail.com?subject=${subject}&body=${body}`;
+        window.location.href = mailtoLink;
+        
+        canSubmit = false;
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('formStatus').style.display = 'block';
+        document.getElementById('formStatus').textContent = 'Message launched! Cooldown initiated...';
 
-                setTimeout(() => {
-                    window.location.reload();
-                }, 3000);
-            }
-            return false;
-        }
+        setTimeout(() => {
+            window.location.reload();
+        }, 3000);
+    }
+    return false;
+}
     </script>
     <script>
         (function() {
