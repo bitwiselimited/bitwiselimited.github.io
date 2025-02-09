@@ -55,6 +55,25 @@
             color: var(--header-text);
             text-decoration: none;
             transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .pc-header a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+
+        .pc-header a:hover::after {
+            transform: scaleX(1);
         }
 
         section {
@@ -204,26 +223,39 @@
             100% { background-position: 0 0, 0 0, 0 100%; }
         }
 
+        /* Mobile Styles */
         @media (max-width: 768px) {
             .main-title {
                 font-size: 2.5rem;
                 margin: 1rem 0;
                 padding: 0 1rem;
+                text-align: center;
+                width: 100%;
             }
             
             section {
                 padding: 2rem 1rem;
-                justify-content: flex-start;
+                justify-content: center;
+                min-height: 100vh;
+            }
+
+            #landing {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
             }
 
             .about-container {
                 grid-template-columns: 1fr;
                 padding: 0 1rem;
+                width: 100%;
+                margin: 0;
             }
 
             .cyber-terminal {
                 width: 95%;
-                margin-top: 1rem;
+                margin: 2rem 0;
             }
 
             .pc-header {
@@ -231,8 +263,21 @@
             }
 
             .glow-button {
-                margin-top: 0.5rem;
-                padding: 0.8rem 1.5rem;
+                margin-top: 1.5rem;
+                padding: 1rem 2rem !important;
+                width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .glow-button {
+                width: 80%;
+                padding: 1rem !important;
             }
         }
 
@@ -241,164 +286,165 @@
                 display: flex; 
             }
         }
-        /* Add to existing styles */
-.pc-header a {
-    position: relative;
-    padding: 0.5rem 0;
-}
 
-.pc-header a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--primary);
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.3s ease;
-}
+        /* Contact Section */
+        #connect {
+            position: relative;
+            padding: 4rem 2rem;
+        }
 
-.pc-header a:hover::after {
-    transform: scaleX(1);
-}
+        .contact-form {
+            max-width: 600px;
+            width: 90%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--terminal-bg);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-/* Contact Section Styles */
-#connect {
-    position: relative;
-    padding: 4rem 2rem;
-}
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--primary);
+            color: var(--text);
+            font-family: 'Source Code Pro', monospace;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
 
-.contact-form {
-    max-width: 600px;
-    width: 90%;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: var(--terminal-bg);
-    border: 2px solid var(--primary);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 1rem;
-    margin: 1rem 0;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--primary);
-    color: var(--text);
-    font-family: 'Source Code Pro', monospace;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    display: block;
-}
-.contact-form textarea {
-    min-height: 150px;
-    resize: none; /* Disable textarea resizing */
-}
+        .contact-form textarea {
+            min-height: 150px;
+            resize: none;
+        }
 
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            box-shadow: 0 0 15px var(--primary);
+            border-color: var(--accent);
+        }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    box-shadow: 0 0 15px var(--primary);
-    border-color: var(--accent);
-}
-.contact-form h2 {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-#submitBtn {
-    width: auto;
-    padding: 1rem 3rem !important;
-}
-#formStatus {
-    width: 100%;
-    text-align: center;
-    margin-top: 1rem;
-}
-@media (max-width: 768px) {
-    .contact-form {
-        padding: 1.5rem;
-    }
-    
-    .contact-form input,
-    .contact-form textarea {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-    }
-    
-    #submitBtn {
-        width: 100%;
-        padding: 0.8rem !important;
-    }
-}
+        .contact-form h2 {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
 
-.social-icons {
-    margin: 2rem 0;
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-}
+        #submitBtn {
+            width: auto;
+            padding: 1rem 3rem !important;
+        }
 
-.social-icons a {
-    font-size: 2.5rem;
-    color: var(--primary);
-    transition: all 0.3s ease;
-    position: relative;
-    text-decoration: none;
-}
+        #formStatus {
+            width: 100%;
+            text-align: center;
+            margin-top: 1rem;
+        }
 
-.social-icons a:hover {
-    transform: translateY(-5px);
-    text-shadow: 0 0 15px var(--primary);
-}
+        .social-icons {
+            margin: 2rem 0;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
 
-.social-icons a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--primary);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
+        .social-icons a {
+            font-size: 2.5rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
+        }
 
-.social-icons a:hover::after {
-    transform: scaleX(1);
-}
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            text-shadow: 0 0 15px var(--primary);
+        }
 
-/* Specific icon hover colors */
-.fa-github:hover { color: #6e5494; }
-.fa-discord:hover { color: #5865f2; }
-.fa-twitter:hover { color: #1da1f2; }
-.fa-pizza-slice:hover { color: var(--accent); }
+        .social-icons a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
 
-/* Add to media queries */
-@media (max-width: 768px) {
-    .contact-form {
-        padding: 1rem;
-    }
-    
-    .social-icons {
-        gap: 1.5rem;
-    }
-    
-    .social-icons a {
-        font-size: 2rem;
-    }
-    
-}
+        .social-icons a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .fa-github:hover { color: #6e5494; }
+        .fa-discord:hover { color: #5865f2; }
+        .fa-twitter:hover { color: #1da1f2; }
+        .fa-pizza-slice:hover { color: var(--accent); }
     </style>
+<style>
+    #gridCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<style>
+    /* Add this to existing CSS */
+    .contact-form {
+        box-sizing: border-box;
+    }
+
+    /* Update mobile styles */
+    @media (max-width: 768px) {
+        .contact-form {
+            padding: 1rem;
+            margin: 1rem auto;
+        }
+
+        #connect {
+            padding: 2rem 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            margin: 0.5rem 0;
+            padding: 0.8rem;
+        }
+
+        .social-icons {
+            gap: 1.5rem;
+        }
+
+        .social-icons a {
+            font-size: 2rem;
+        }
+    }
+
+    /* Prevent background refresh on scroll */
+    #gridCanvas {
+        position: fixed;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000;
+        will-change: transform;
+    }
+</style>
 </head>
 <body>
-    <div class="cyber-grid"></div>
+
+    <canvas id="gridCanvas"></canvas>
+    
     <nav class="pc-header">
         <a href="#landing">[root@bitwise ~]#</a>
         <a href="#about">./about_us.fun</a>
@@ -467,11 +513,11 @@
 
     <section id="connect">
         <form class="contact-form" id="contactForm" onsubmit="return handleSubmit(event)">
-            <h2>📧 Emergency Meme Hotline</h2>
-            <input id="name" placeholder="Hacker Alias" type="text" required>
-            <input id="email" placeholder="Pigeon Carrier Network" type="email" required>
-            <textarea id="message" placeholder="Classified Message (max 420 characters)" rows="5" required></textarea>
-            <button type="submit" class="glow-button" id="submitBtn">Launch Message</button>
+            <h2>Emergency Meme Hotline</h2>
+            <input id="name" placeholder="Name:" type="text" required>
+            <input id="email" placeholder="Email:" type="email" required>
+            <textarea id="message" placeholder="Your message (max 420 characters)" rows="5" required></textarea>
+            <button type="submit" class="glow-button" id="submitBtn">Send Message</button>
             <div id="formStatus"></div>
         </form>
         <div class="social-icons">
@@ -543,5 +589,148 @@
             return false;
         }
     </script>
+    <script>
+        (function() {
+            const canvas = document.getElementById('gridCanvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const particleCount = 150;
+            const mouse = { x: null, y: null, radius: 100 };
+    
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                drawGrid();
+            }
+    
+            // Grid drawing function
+            function drawGrid() {
+                ctx.strokeStyle = 'rgba(0, 243, 255, 0.1)';
+                ctx.lineWidth = 0.5;
+                
+                // Vertical lines
+                for(let x = 0; x < canvas.width; x += 40) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                    ctx.stroke();
+                }
+                
+                // Horizontal lines
+                for(let y = 0; y < canvas.height; y += 40) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
+                }
+            }
+    
+            // Particle class
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2;
+                    this.baseX = this.x;
+                    this.baseY = this.y;
+                    this.density = (Math.random() * 10) + 2;
+                }
+                
+                draw() {
+                    ctx.fillStyle = 'rgba(0, 243, 255, 0.8)';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+                
+                update() {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+                    
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) {
+                            let dx = this.baseX - this.x;
+                            this.x += dx / 10;
+                        }
+                        if (this.y !== this.baseY) {
+                            let dy = this.baseY - this.y;
+                            this.y += dy / 10;
+                        }
+                    }
+                }
+            }
+    
+            // Initialize particles
+            function init() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+    
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawGrid();
+                
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+    
+            // Mouse position tracker
+            window.addEventListener('mousemove', function(e) {
+                mouse.x = e.x;
+                mouse.y = e.y;
+            });
+    
+            // Reset mouse position when leaving canvas
+            window.addEventListener('mouseout', function() {
+                mouse.x = undefined;
+                mouse.y = undefined;
+            });
+    
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                resizeCanvas();
+                init();
+            });
+    
+            // Start everything
+            resizeCanvas();
+            init();
+            animate();
+        })();
+    </script>
+       <script>
+        // Add touch support for particle effect
+        window.addEventListener('touchmove', function(e) {
+            if(e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+            }
+        });
+
+        window.addEventListener('touchend', function() {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+    </script>
+    
 </body>
 </html>
